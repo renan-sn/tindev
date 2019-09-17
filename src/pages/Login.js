@@ -7,8 +7,7 @@ import logo from '../assets/logo.png';
 
 export default function Login({ history }) {
     const [username, setUsername] = useState('');
-
-    let usuario = [];
+    const [usuario, setUsuario] = useState([]);
 
     function hundleSubmit(event) {
         event.preventDefault();
@@ -21,8 +20,8 @@ export default function Login({ history }) {
         try {
             const response = await api.get(`/${username}`);
             
-            const { id, name, bio, avatar_url } = response.data;
-            usuario.push( {id, name, bio, avatar_url} );
+            const { id, name, bio, avatar_url, login } = response.data;
+            setUsuario( {id, name, bio, avatar_url, login} );
         
             console.log(usuario);
             history.push('/main');
